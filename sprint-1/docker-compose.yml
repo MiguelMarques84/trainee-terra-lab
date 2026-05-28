@@ -1,7 +1,7 @@
 services:
  
      postgres:
-        image: postgres
+        image: postgres:16
         container_name: postgres
         environment:
             POSTGRES_USER: admin
@@ -9,7 +9,7 @@ services:
             POSTGRES_DB: mydb
         ports:
             - "5432:5432"
-        volumes:
+        volumes:    
             - ./data:/var/lib/postgresql/data
 
      airflow:
@@ -20,3 +20,4 @@ services:
         depends_on:
             - postgres         
 
+        command: standalone
