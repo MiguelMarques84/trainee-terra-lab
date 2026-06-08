@@ -1,0 +1,16 @@
+# Dados do postgres
+data/
+postgres_data/
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+logs/
+
+# Arquivos temporários
+.env
+
+# Arquivos grandes
+arquivos/*.csv

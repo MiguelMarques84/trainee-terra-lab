@@ -1,0 +1,33 @@
+services:
+ 
+     postgres:
+        image: postgres:16
+        container_name: postgres
+        environment:
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: 123456
+            POSTGRES_DB: mydb
+        ports:
+            - "5432:5432"
+        volumes:    
+            - postgres_data:/var/lib/postgresql/data
+
+     airflow:
+        image: apache/airflow:2.5.1
+        container_name: airflow
+
+        environment:
+            AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./dags:/opt/airflow/dags
+            - ./arquivos:/opt/airflow/arquivos
+        depends_on:
+            - postgres         
+
+        command: standalone
+
+volumes:
+    postgres_data:
